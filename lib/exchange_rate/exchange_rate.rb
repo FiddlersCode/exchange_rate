@@ -13,7 +13,7 @@ class ExchangeRate
     raise "Date must be within the past 90 days." if !is_date_valid?
     raise "This currency is not supported." if !is_currency_valid?
     parser = XMLParser.new(get_current_rates_file)
-    rate = parser.get_rate(@date, @from_currency, @to_currency)
+    rate = parser.get_rate(@date, @to_currency)
     ExchangeRate.new(@date, @from_currency, @to_currency, rate)
   end
 
