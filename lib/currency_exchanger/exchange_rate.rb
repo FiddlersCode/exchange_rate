@@ -1,11 +1,4 @@
-class ExchangeRate
-
-  attr_reader :from_currency, :to_currency, :date
-  def initialize(from_currency, to_currency, date)
-    @from_currency = from_currency
-    @to_currency = to_currency
-    @date = date
-  end
+class ExchangeRate < CurrencyExchanger
 
   def ==(exchange_rate)
     self.to_currency == exchange_rate.to_currency &&
