@@ -1,15 +1,15 @@
 class CurrencyExchanger
 
-  attr_reader :from_currency, :to_currency, :date
+  attr_reader :date, :from_currency, :to_currency
 
-  def initialize(from_currency, to_currency, date)
+  def initialize(date, from_currency, to_currency)
+    @date = date
     @from_currency = from_currency
     @to_currency = to_currency
-    @date = date
   end
 
   def get_exchange_rate
-    ExchangeRate.new(@from_currency, @to_currency, @date)
+    ExchangeRate.new(@date, @from_currency, @to_currency)
   end
 
 end
