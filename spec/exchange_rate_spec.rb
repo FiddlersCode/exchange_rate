@@ -37,4 +37,13 @@ RSpec.describe ExchangeRate do
     end
   end
 
+  describe 'invalid data' do
+    it 'should throw an error if the date is not supported' do
+      exchange_rate = ExchangeRate.new( Date.new(1900-01-02), 'USD', 'USD')
+      allow(exchange_rate).to receive(:is_date_valid?) { false }
+      expect{exchange_rate.get_exchange_rate}.to raise_error("Date must be within the past 90 days.")
+
+    end
+  end
+
 end
