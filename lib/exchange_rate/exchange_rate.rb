@@ -12,7 +12,7 @@ class ExchangeRate
   def get_exchange_rate
     raise "Date must be within the past 90 days." if !is_date_valid?
     raise "This currency is not supported." if !is_currency_valid?
-    ExchangeRate.new(@date, @from_currency, @to_currency)
+    ExchangeRate.new(@date, @from_currency, @to_currency, 1)
   end
 
   def ==(exchange_rate)
