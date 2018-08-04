@@ -6,13 +6,13 @@ RSpec.describe ExchangeRate do
   end
 
   before(:each) do
-    @exchange_rate = ExchangeRate.new(Date.today, 'USD', 'CHF')
+    @exchange_rate = ExchangeRate.new(Date.today, 'EUR', 'USD')
   end
 
   describe 'instantiation' do
     it 'currency exchanger accepts from and to currencies' do
-      expect(@exchange_rate.from_currency).to eq('USD')
-      expect(@exchange_rate.to_currency).to eq('CHF')
+      expect(@exchange_rate.from_currency).to eq('EUR')
+      expect(@exchange_rate.to_currency).to eq('USD')
     end
 
     it 'currency exchanger accepts a date' do
