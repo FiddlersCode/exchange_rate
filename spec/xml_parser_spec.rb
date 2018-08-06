@@ -16,7 +16,6 @@ RSpec.describe ExchangeRate do
 
     it 'should get the date of the first item in the row' do
       parser = XMLParser.new("./lib/rates/daily_rates.xml")
-      exchange_rate_object = ExchangeRate.new('2018-08-03', 'EUR', 'USD')
       expect(parser.get_rate('2018-08-03', 'USD')).to eq 1.1588
     end
   end
