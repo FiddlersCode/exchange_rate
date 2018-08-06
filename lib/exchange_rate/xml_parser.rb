@@ -17,4 +17,8 @@ class XMLParser
     file.remove_namespaces!
   end
 
+  def get_current_rates_file
+    './lib/rates/daily_rates.xml'
+  end
+
 end
