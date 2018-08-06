@@ -13,11 +13,6 @@ class XMLParser
   end
 
   private
-
-  def get_current_rates_file
-    './lib/rates/daily_rates.xml'
-  end
-
   def format_xml(file)
     file.remove_namespaces!
   end

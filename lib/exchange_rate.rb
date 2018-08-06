@@ -1,6 +1,7 @@
 require "exchange_rate/version"
 require "exchange_rate/exchange_rate"
 require "exchange_rate/xml_parser"
+require "exchange_rate/dev/xml_parser"
 require "date"
 require "nokogiri"
 require "open-uri"

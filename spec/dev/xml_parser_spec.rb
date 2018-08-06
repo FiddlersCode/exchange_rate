@@ -14,7 +14,7 @@ RSpec.describe ExchangeRate do
 
   describe 'parsing the xml' do
     before(:each) do
-      @parser = XMLParser.new
+      @parser = XMLParserDev.new
     end
 
     it 'should get set the xml file' do
