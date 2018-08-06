@@ -8,7 +8,7 @@ RSpec.describe ExchangeRate do
       @parser = XMLParserDev.new
     end
 
-    it 'should get set the xml file' do
+    it 'should set the xml file' do
       @parser.get_rate('2018-08-03', 'USD')
       expect(@parser.file).to eq './spec/test_data/daily_rates.xml'
     end
