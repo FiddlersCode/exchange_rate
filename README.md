@@ -17,6 +17,14 @@ Or install it yourself as:
 
     $ gem install exchange_rate
 
+## Tests
+From `root folder`: 
+
+- Complete test suite: `rspec` 
+- Unit tests: `rspec/spec/unit`
+- Integration tests: `rspec/spec/integration`
+
+
 ## Usage
 
 TODO: Write usage instructions here
