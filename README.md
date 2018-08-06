@@ -28,6 +28,16 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 To experiment with that code, run bin/console for an interactive prompt.
+
+## Assumptions
+In a job situation, I would clarify these assumptions but I decided that for the purposes of a tech test I could safely assume the following:
+- Rates should be kept only for the previous 90 days
+- Storing in a local file (as opposed to a DB) is fine
+- I did not need to choose a production-level API to use but simply provide the functionality to plug in. 
+(Many of the production
+level APIs I looked at used JSON so there would be some different configuration but not much.)
+
+
 ## Design Process
 - Used event storming to get a full sense of the domain. While this library is solely to 
 get exchange rates and not to calculate currency conversion, I did storm the process from the UI
@@ -49,15 +59,8 @@ this was a really interesting opportunity to introduce value objects with the TD
 and also means the objects themselves are immutable, both of which provide further safety.
 - Use of interfaces to tightly encapsulate communication. This would make it simple to plug in whatever production-level API is chosen
 - Design based on sending messages rather than creating objects, as described in POODR
-
-
-## Assumptions
-In a job situation, I would clarify these assumptions but I decided that for the purposes of a tech test I could safely assume the following:
-- Rates should be kept only for the previous 90 days
-- Storing in a local file (as opposed to a DB) is fine
-- I did not need to choose a production-level API to use but simply provide the functionality to plug in. 
-(Many of the production
-level APIs I looked at used JSON so there would be some different configuration but not much.)
+- Decided that at this stage, I did not need to set environment variables to determine dev/prod env. The classes and tests are 
+sufficiently isolated that until a production API is chosen, there's no need to configure env variables.
 
 
 ## License
