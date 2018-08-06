@@ -12,7 +12,7 @@ class ExchangeRate
   def get_exchange_rate
     raise "Date must be within the past 90 days." if !is_date_valid?
     raise "This currency is not supported." if !is_currency_valid?
-    parser = XMLParser.new(get_current_rates_file)
+    parser = XMLParser.new
     rate = parser.get_rate(@date, @to_currency)
     ExchangeRate.new(@date, @from_currency, @to_currency, rate)
   end
@@ -29,11 +29,6 @@ class ExchangeRate
 
   def is_currency_valid?
     true
-  end
-
-  private
-  def get_current_rates_file
-    './lib/rates/daily_rates.xml'
   end
 
 end

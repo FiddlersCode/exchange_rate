@@ -13,10 +13,17 @@ RSpec.describe ExchangeRate do
   end
 
   describe 'parsing the xml' do
+    before(:each) do
+      @parser = XMLParser.new
+    end
+
+    it 'should get set the xml file' do
+      @parser.get_rate('2018-08-03', 'USD')
+      expect(@parser.file).to eq './lib/rates/daily_rates.xml'
+    end
 
     it 'should get the date of the first item in the row' do
-      parser = XMLParser.new("./spec/test_data/test_daily_rate.xml")
-      expect(parser.get_rate('2018-08-03', 'USD')).to eq 1.1588
+      expect(@parser.get_rate('2018-08-03', 'USD')).to eq 1.1588
     end
   end
 
