@@ -27,17 +27,16 @@ class XMLParser
   end
 
   def is_counter_currency_valid?(exchange_rate_object)
+    true if get_counter_currencies(exchange_rate_object).include? exchange_rate_object.to_currency
+  end
+
+  def get_counter_currencies(exchange_rate_object)
     @file = get_current_rates_file
     doc = Nokogiri::XML(File.open(@file))
     format_xml(doc)
     cube = doc.xpath("//Cube/Cube[@time='#{exchange_rate_object.date}']/Cube")
     cube.to_a
-    currencies = cube.map { |e| e.to_a[0][1]}
-    true if currencies.include? exchange_rate_object.to_currency
-  end
-
-  def get_counter_currencies
-
+    cube.map { |e| e.to_a[0][1]}
   end
 
   def format_xml(file)
