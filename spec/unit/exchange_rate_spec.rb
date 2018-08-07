@@ -21,7 +21,7 @@ RSpec.describe ExchangeRate do
   end
 
   describe 'get exchange rate' do
-    it 'returns a new exchange exchange_rate object with a rate' do
+    it 'get_exchange_rate returns a new exchange rate object' do
       @exchange_rate = ExchangeRate.new(Date.new(2018,8,3), 'EUR', 'USD')
       exchange_rate_object = @exchange_rate.get_exchange_rate
       expect(exchange_rate_object.rate).to eq(1.1588)
@@ -56,6 +56,16 @@ RSpec.describe ExchangeRate do
       exchange_rate = ExchangeRate.new( Date.today, 'USD', 'unsupported_currency')
       allow(exchange_rate).to receive(:is_currency_valid?) { false }
       expect{exchange_rate.get_exchange_rate}.to raise_error("This currency is not supported.")
+    end
+
+  end
+
+  describe 'past dates' do
+    it 'can find the rate for a past date' do
+      @exchange_rate = ExchangeRate.new(Date.new(2018,8,1), 'EUR', 'USD')
+      @exchange_rate_object = @exchange_rate.get_exchange_rate
+      expect(@exchange_rate_object.rate).to eq(1.1696)
+      expect(@exchange_rate_object.date).to eq(Date.new(2018,8,1))
     end
 
   end
