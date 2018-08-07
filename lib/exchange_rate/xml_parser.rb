@@ -7,6 +7,8 @@ class XMLParser
 
   def get_rate(exchange_rate_object)
     raise "Date must be within the past 90 days." if !is_date_valid?(exchange_rate_object.date)
+    raise "This base currency is not supported." if !is_base_currency_valid?(exchange_rate_object)
+    raise "This counter currency is not supported." if !is_counter_currency_valid?(exchange_rate_object)
 
     @file = get_current_rates_file
     doc = Nokogiri::XML(File.open(@file))
@@ -18,6 +20,24 @@ class XMLParser
 
   def is_date_valid?(date)
     true if (Date.today - date).to_i < 90
+  end
+
+  def is_base_currency_valid?(exchange_rate_object)
+    true if exchange_rate_object.from_currency == 'EUR'
+  end
+
+  def is_counter_currency_valid?(exchange_rate_object)
+    @file = get_current_rates_file
+    doc = Nokogiri::XML(File.open(@file))
+    format_xml(doc)
+    cube = doc.xpath("//Cube/Cube[@time='#{exchange_rate_object.date}']/Cube")
+    cube.to_a
+    currencies = cube.map { |e| e.to_a[0][1]}
+    true if currencies.include? exchange_rate_object.to_currency
+  end
+
+  def get_counter_currencies
+
   end
 
   def format_xml(file)

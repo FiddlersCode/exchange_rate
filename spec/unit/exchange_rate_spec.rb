@@ -28,8 +28,9 @@ RSpec.describe ExchangeRate do
     end
 
     it 'returns a new exchange rate object with a new date object set to today\'s date' do
+      @exchange_rate = ExchangeRate.new(Date.new(2018,8,3), 'EUR', 'USD')
       @exchange_rate_object = @exchange_rate.get_exchange_rate
-      expect(@exchange_rate_object.date).to eq Date.today
+      expect(@exchange_rate_object.date).to eq Date.new(2018,8,3)
     end
 
   end
