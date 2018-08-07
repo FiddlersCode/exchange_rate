@@ -5,11 +5,11 @@ class XMLParser
     @file
   end
 
-  def get_rate(date, to_currency)
+  def get_rate(exchange_rate_object)
     @file = get_current_rates_file
     doc = Nokogiri::XML(File.open(@file))
     format_xml(doc)
-    doc.xpath("//Cube/Cube[@time='#{date}']/Cube[@currency='#{to_currency}']/@rate").to_s.to_f
+    doc.xpath("//Cube/Cube[@time='#{exchange_rate_object.date}']/Cube[@currency='#{exchange_rate_object.to_currency}']/@rate").to_s.to_f
   end
 
   private
