@@ -16,9 +16,23 @@ class ExchangeRate
   end
 
   def ==(exchange_rate)
-    self.to_currency == exchange_rate.to_currency &&
-        self.from_currency == exchange_rate.from_currency &&
-        self.date == exchange_rate.date
+    to_currencies_equal?(exchange_rate) &&
+        from_currencies_equal?(exchange_rate) &&
+        dates_equal?(exchange_rate)
+  end
+
+  private
+
+  def dates_equal?(exchange_rate)
+    self.date == exchange_rate.date
+  end
+
+  def from_currencies_equal?(exchange_rate)
+    self.from_currency == exchange_rate.from_currency
+  end
+
+  def to_currencies_equal?(exchange_rate)
+    self.to_currency == exchange_rate.to_currency
   end
 
 end
