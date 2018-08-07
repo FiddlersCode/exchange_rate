@@ -6,6 +6,8 @@ class XMLParser
   end
 
   def get_rate(exchange_rate_object)
+    raise "Date must be within the past 90 days." if !is_date_valid?(exchange_rate_object.date)
+
     @file = get_current_rates_file
     doc = Nokogiri::XML(File.open(@file))
     format_xml(doc)
@@ -13,6 +15,11 @@ class XMLParser
   end
 
   private
+
+  def is_date_valid?(date)
+    true if (Date.today - date).to_i < 90
+  end
+
   def format_xml(file)
     file.remove_namespaces!
   end

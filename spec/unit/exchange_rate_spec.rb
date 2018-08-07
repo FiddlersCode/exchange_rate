@@ -32,33 +32,8 @@ RSpec.describe ExchangeRate do
       expect(@exchange_rate_object.date).to eq Date.today
     end
 
-    it 'returns a new exchange rate object with a new date object set to a past date' do
-      exchange_rate = ExchangeRate.new( Date.new(2018-01-02), 'USD', 'USD')
-      exchange_rate_object = exchange_rate.get_exchange_rate
-      expect(exchange_rate_object.date).to eq Date.new(2018-01-02)
-    end
   end
 
-  describe 'invalid data' do
-    it 'should throw an error if the date is not supported' do
-      exchange_rate = ExchangeRate.new( Date.new(1900-01-02), 'USD', 'USD')
-      allow(exchange_rate).to receive(:is_date_valid?) { false }
-      expect{exchange_rate.get_exchange_rate}.to raise_error("Date must be within the past 90 days.")
-    end
-
-    it 'should throw an error if the from currency is not supported' do
-      exchange_rate = ExchangeRate.new( Date.today, 'unsupported_currency', 'USD')
-      allow(exchange_rate).to receive(:is_currency_valid?) { false }
-      expect{exchange_rate.get_exchange_rate}.to raise_error("This currency is not supported.")
-    end
-
-    it 'should throw an error if the to currency is not supported' do
-      exchange_rate = ExchangeRate.new( Date.today, 'USD', 'unsupported_currency')
-      allow(exchange_rate).to receive(:is_currency_valid?) { false }
-      expect{exchange_rate.get_exchange_rate}.to raise_error("This currency is not supported.")
-    end
-
-  end
 
   describe 'past dates' do
     it 'can find the rate for a past date' do
