@@ -6,7 +6,8 @@ RSpec.describe ExchangeRate do
   end
 
   before(:each) do
-    @exchange_rate = ExchangeRate.new(Date.today, 'EUR', 'USD')
+    @yesterday = Date.today.prev_day
+    @exchange_rate = ExchangeRate.new(@yesterday, 'EUR', 'USD')
   end
 
   describe 'instantiation' do
@@ -16,7 +17,7 @@ RSpec.describe ExchangeRate do
     end
 
     it 'currency exchanger accepts a date' do
-      expect(@exchange_rate.date).to eq(Date.today)
+      expect(@exchange_rate.date).to eq(@yesterday)
     end
   end
 
@@ -28,9 +29,9 @@ RSpec.describe ExchangeRate do
     end
 
     it 'returns a new exchange rate object with a new date object set to today\'s date' do
-      @exchange_rate = ExchangeRate.new(Date.new(2018,8,3), 'EUR', 'USD')
+      @exchange_rate = ExchangeRate.new(@yesterday, 'EUR', 'USD')
       @exchange_rate_object = @exchange_rate.get_exchange_rate
-      expect(@exchange_rate_object.date).to eq Date.new(2018,8,3)
+      expect(@exchange_rate_object.date).to eq @yesterday
     end
 
   end
