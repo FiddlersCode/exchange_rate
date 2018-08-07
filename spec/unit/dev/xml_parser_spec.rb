@@ -22,12 +22,12 @@ RSpec.describe ExchangeRate do
 
       it 'should throw an error if the base currency is not supported' do
         @exchange_rate = ExchangeRate.new(Date.today, 'test', 'USD')
-        expect{@parser.get_rate(@exchange_rate)}.to raise_error("This base currency is not supported.")
+        expect{@parser.get_rate(@exchange_rate)}.to raise_error("The base currency test is not supported.")
       end
 
       it 'should throw an error if the counter currency is not supported' do
         @exchange_rate = ExchangeRate.new(Date.today, 'EUR', 'test')
-        expect{@parser.get_rate(@exchange_rate)}.to raise_error("This counter currency is not supported.")
+        expect{@parser.get_rate(@exchange_rate)}.to raise_error("The counter currency test is not supported.")
       end
 
     end
