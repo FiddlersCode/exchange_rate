@@ -1,5 +1,4 @@
 require "bundler/setup"
-require 'capybara/rspec'
 require "exchange_rate"
 
 RSpec.configure do |config|
