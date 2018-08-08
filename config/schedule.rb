@@ -5,12 +5,14 @@
 
 # Example:
 #
-# set :output, "/path/to/my/cron_log.log"
-#
-# every 2.hours do
-#   command "/usr/bin/some_great_command"
-#   runner "MyModel.some_method"
-#   rake "some:great:rake:task"
+set :output, "/var/log/cron_log.log"
+
+every 1.minute do
+  command "curl -o /Users/paulamuldoon/exchange_rate/spec/test_data/daily_rates.xml http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml?526da90c43e51cc5b44bf360e6f1dac3"
+end
+
+# every 1.day, at: '4:30am' do
+#   command "curl http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml?526da90c43e51cc5b44bf360e6f1dac3 -0 ./spec/test_data/daily_rates.xml"
 # end
 #
 # every 4.days do
