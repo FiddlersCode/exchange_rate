@@ -1,15 +1,15 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "currency_exchanger/version"
+require "exchange_rate/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "currency_exchanger"
-  spec.version       = CurrencyExchanger::VERSION
+  spec.name          = "exchange_rate"
+  spec.version       = ExchangeRate::VERSION
   spec.authors       = ["Paula Muldoon"]
   spec.email         = ["pmuldoon@umich.edu"]
 
-  spec.summary       = "Currency converter"
+  spec.summary       = "Exchange Rate"
   spec.homepage      = "http://github.com/fiddlerscode"
   spec.license       = "MIT"
 
