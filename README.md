@@ -2,6 +2,7 @@
 
 
 ## Installation
+NB these instructions will not apply until the gem has been uploaded to RubyGems.
 
 Add this line to your application's Gemfile:
 
@@ -69,6 +70,9 @@ and also means the objects themselves are immutable, both of which provide furth
 - Design based on sending messages rather than creating objects, as described in POODR
 - Decided that at this stage, I did not need to set environment variables to determine dev/prod env. The classes and tests are 
 sufficiently isolated that until a production API is chosen, there's no need to configure env variables.
+
+## Further improvements
+- implement a test framework for the `schedule.rb`
 
 
 ## License
