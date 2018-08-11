@@ -22,6 +22,11 @@ RSpec.describe ExchangeRate do
         expect{@parser.get_rate(@exchange_rate)}.to raise_error("Date must be within the past 90 days.")
       end
 
+      it 'should throw a type error if the date is given as a string' do
+        @exchange_rate = ExchangeRate.new('test_date', 'EUR', 'USD')
+        expect{@parser.get_rate(@exchange_rate)}.to raise_error("expected numeric")
+      end
+
       it 'should throw an error if the base currency is not supported' do
         @exchange_rate = ExchangeRate.new(@yesterday, 'test', 'USD')
         expect{@parser.get_rate(@exchange_rate)}.to raise_error("The base currency test is not supported.")
