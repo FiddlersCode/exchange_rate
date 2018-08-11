@@ -25,8 +25,13 @@ From `root folder`:
 
 
 ## Cron jobs
+Cron jobs were written using [wheneverize](https://github.com/javan/whenever) gem.
+
 To run the cron, open 'lib/config/schedule.rb' and replace with 'root' variable with the your own path to the 'exchange_root' directory.
-Cron jobs were written using `wheneverize` gem.
+Run `whenever --update-crontab`
+
+NB The cron is set to run daily at 3am so if you want to see it in action, change `every 1.day, at: '3:00am' do`
+to `every 1.minute do` and run `whenever --update-crontab` and `tail -f /var/log/cron_log.log`.
 
 ## Usage
 
