@@ -96,6 +96,8 @@ testing that the exchange rate is a float or an integer, but I left it in for no
     should log an error and generate an automatic immediate retry, but the second time should log an error and try again in ten minutes,
     and the third time generate an alert etc)
 - pre-commit hook to run test suite
+- configure rubocop to disable
+    * class documentation comments  
 
 
 ## License
