@@ -1,9 +1,9 @@
 class ExchangeRate
-  attr_reader :date, :from_currency, :to_currency, :rate
+  attr_reader :date, :base_currency, :to_currency, :rate
 
-  def initialize(date, from_currency, to_currency, rate = nil)
+  def initialize(date, base_currency, to_currency, rate = nil)
     @date = date
-    @from_currency = from_currency
+    @base_currency = base_currency
     @to_currency = to_currency
     @rate = rate
   end
@@ -11,12 +11,12 @@ class ExchangeRate
   def get_exchange_rate
     parser = XMLParser.new
     rate = parser.get_rate(self)
-    ExchangeRate.new(@date, @from_currency, @to_currency, rate)
+    ExchangeRate.new(@date, @base_currency, @to_currency, rate)
   end
 
   def ==(exchange_rate)
     to_currencies_equal?(exchange_rate) &&
-      from_currencies_equal?(exchange_rate) &&
+      base_currencies_equal?(exchange_rate) &&
       dates_equal?(exchange_rate)
   end
 
@@ -26,8 +26,8 @@ class ExchangeRate
     date == exchange_rate.date
   end
 
-  def from_currencies_equal?(exchange_rate)
-    from_currency == exchange_rate.from_currency
+  def base_currencies_equal?(exchange_rate)
+    base_currency == exchange_rate.base_currency
   end
 
   def to_currencies_equal?(exchange_rate)

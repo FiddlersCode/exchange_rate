@@ -12,7 +12,7 @@ RSpec.describe ExchangeRate do
 
   describe 'instantiation' do
     it 'currency exchanger accepts from and to currencies' do
-      expect(@exchange_rate.from_currency).to eq('EUR')
+      expect(@exchange_rate.base_currency).to eq('EUR')
       expect(@exchange_rate.to_currency).to eq('USD')
     end
 
