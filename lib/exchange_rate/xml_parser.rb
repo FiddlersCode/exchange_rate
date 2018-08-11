@@ -43,7 +43,7 @@ class XMLParser
   end
 
   def get_current_rates_file
-    './lib/rates/daily_rates.xml'
+    './lib/exchange_rate_data/daily_rates.xml'
   end
 
 end

@@ -7,6 +7,7 @@ gemspec
 group :test do
   gem 'whenever-test'
   gem 'rspec'
+  gem 'simplecov', require: false
 end
 
 gem 'nokogiri'
