@@ -26,6 +26,10 @@ From `root folder`:
 - Integration tests: `rspec/spec/integration` 
 
 
+## Cron jobs
+To run the cron, open 'lib/config/schedule.rb' and replace with 'root' variable with the your own path to the 'exchange_root' directory.
+Cron jobs were written using `wheneverize` gem.
+
 ## Usage
 
 TODO: Write usage instructions here
@@ -79,6 +83,13 @@ testing that the exchange rate is a float or an integer, but I left it in for no
 
 ## Further improvements
 - implement a test framework for the `schedule.rb`
+- more robust cron job handling (more relevant if this is running on a server rather than a local computer!):
+    * automatic retry if download failure
+    * error logging
+    * error alerting
+    * (event storming was very instructive here, as the first time the cron fails is different from the second time - the first time
+    should log an error and generate an automatic immediate retry, but the second time should log an error and try again in ten minutes,
+    and the third time generate an alert etc)
 
 
 ## License
@@ -87,4 +98,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the CurrencyExchanger project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/exchange_rate/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the CurrencyExchanger project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://communitycodeofconduct.com/).
