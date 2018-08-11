@@ -1,5 +1,3 @@
-# CurrencyExchanger
-
 
 ## Installation
 NB these instructions will not apply until the gem has been uploaded to RubyGems.
