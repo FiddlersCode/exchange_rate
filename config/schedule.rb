@@ -5,9 +5,9 @@
 
 # Example:
 #
-set :output, "/var/log/cron_log.log"
+set :output, '/var/log/cron_log.log'
 
-@root = "/Users/paulamuldoon/"
+@root = '/Users/paulamuldoon/'
 
 every 1.day, at: '3:00am' do
   command "curl -o #{@root}exchange_rate/spec/test_data/daily_rates.xml http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml?526da90c43e51cc5b44bf360e6f1dac3"

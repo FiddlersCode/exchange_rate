@@ -1,9 +1,7 @@
 require 'exchange_rate'
 
 RSpec.describe ExchangeRate do
-
   describe 'file fetching' do
-
     before(:each) do
       @retriever = DataRetriever.new
     end
@@ -14,9 +12,5 @@ RSpec.describe ExchangeRate do
       @retriever.get_rates_file(url, destination)
       expect(File.exist?('./spec/test_data/daily_rates.xml')).to be true
     end
-
   end
-
-
 end
-

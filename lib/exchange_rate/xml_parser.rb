@@ -6,9 +6,9 @@ class XMLParser
   end
 
   def get_rate(exchange_rate_object)
-    raise "Date must be within the past 90 days." if !is_date_valid?(exchange_rate_object.date)
-    raise "The base currency #{exchange_rate_object.from_currency} is not supported." if !is_base_currency_valid?(exchange_rate_object)
-    raise "The counter currency #{exchange_rate_object.to_currency} is not supported." if !is_counter_currency_valid?(exchange_rate_object)
+    raise 'Date must be within the past 90 days.' unless is_date_valid?(exchange_rate_object.date)
+    raise "The base currency #{exchange_rate_object.from_currency} is not supported." unless is_base_currency_valid?(exchange_rate_object)
+    raise "The counter currency #{exchange_rate_object.to_currency} is not supported." unless is_counter_currency_valid?(exchange_rate_object)
 
     open_rates_file.xpath("//Cube/Cube[@time='#{exchange_rate_object.date}']/Cube[@currency='#{exchange_rate_object.to_currency}']/@rate").to_s.to_f
   end
@@ -29,7 +29,7 @@ class XMLParser
 
   def get_counter_currencies(exchange_rate_object)
     date_cubes = open_rates_file.xpath("//Cube/Cube[@time='#{exchange_rate_object.date}']/Cube")
-    date_cubes.to_a.map { |e| e.to_a[0][1]}
+    date_cubes.to_a.map { |e| e.to_a[0][1] }
   end
 
   def open_rates_file
@@ -45,5 +45,4 @@ class XMLParser
   def get_current_rates_file
     './lib/exchange_rate_data/daily_rates.xml'
   end
-
 end
