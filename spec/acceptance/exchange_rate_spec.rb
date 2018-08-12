@@ -16,6 +16,10 @@ RSpec.describe ExchangeRate do
     end
   end
 
+  after(:each) do
+    File.delete('./spec/acceptance/daily_rates.xml')
+  end
+
 private
 
   def valid_date
