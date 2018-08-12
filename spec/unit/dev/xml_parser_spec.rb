@@ -4,7 +4,6 @@ RSpec.describe ExchangeRate do
   describe 'parsing the xml' do
     before(:each) do
       @parser = XMLParserDev.new
-      @yesterday = Date.today.prev_day
     end
 
     it 'should set the xml file' do
@@ -15,8 +14,9 @@ RSpec.describe ExchangeRate do
 
     describe 'invalid data' do
       it 'should throw an error if the date is not supported' do
-        test_date = Date.today - 90
-        @exchange_rate = ExchangeRate.new(test_date, 'EUR', 'USD')
+        latest_test_date = Date.new(2018,8,3)
+        invalid_date = latest_test_date - 90
+        @exchange_rate = ExchangeRate.new(invalid_date, 'EUR', 'USD')
         expect { @parser.get_rate(@exchange_rate) }.to raise_error('Date must be within the past 90 days.')
       end
 
@@ -26,12 +26,12 @@ RSpec.describe ExchangeRate do
       end
 
       it 'should throw an error if the base currency is not supported' do
-        @exchange_rate = ExchangeRate.new(@yesterday, 'test', 'USD')
+        @exchange_rate = ExchangeRate.new(Date.new(2018,8,3), 'test', 'USD')
         expect { @parser.get_rate(@exchange_rate) }.to raise_error('The base currency test is not supported.')
       end
 
       it 'should throw an error if the counter currency is not supported' do
-        @exchange_rate = ExchangeRate.new(@yesterday, 'EUR', 'test')
+        @exchange_rate = ExchangeRate.new(Date.new(2018,8,3), 'EUR', 'test')
         expect { @parser.get_rate(@exchange_rate) }.to raise_error('The counter currency test is not supported.')
       end
     end
