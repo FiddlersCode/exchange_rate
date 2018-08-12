@@ -14,7 +14,7 @@ class ExchangeRate
   end
 
   def get_exchange_rate
-    parser = Parser.new
+    parser = XMLParser.new
     rate = parser.get_rate(self)
     ExchangeRate.new(@date, @base_currency, @counter_currency, rate)
   end
