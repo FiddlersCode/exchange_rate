@@ -6,10 +6,15 @@ RSpec.describe ExchangeRate do
       @parser = JSONParser.new
     end
 
+    it 'should respond to the necessary methods rate' do
+      expect(@parser).to respond_to(:get_rate)
+      expect(@parser).to respond_to(:get_counter_currencies)
+      expect(@parser).to respond_to(:open_rates_file)
+      expect(@parser).to respond_to(:get_current_rates_file)
+    end
+
     it 'should get the current rates file' do
-      @exchange_rate = ExchangeRate.new(Date.new(2018,8,3), 'EUR', 'USD')
-      @parser.get_rate(@exchange_rate)
-      expect(@parser.file).to eq './lib/exchange_rate_data/daily_rates.xml'
+      expect(@parser.get_current_rates_file).to eq('./lib/exchange_rate_data/daily_rates.xml')
     end
   end
 end
