@@ -86,6 +86,7 @@ a test framework was out of scope but I would expect that this file be fully tes
 - pre-commit hook to run test suite
 - configure rubocop to disable
     * class documentation comments  
+- use the DataRetriever class in the cron job
 
 
 ## License
