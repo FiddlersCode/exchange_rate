@@ -2,6 +2,8 @@ require 'exchange_rate'
 
 RSpec.describe ExchangeRate do
   before(:each) do
+    @file = './spec/acceptance/daily_rates.xml'
+    File.delete(@file) if File.exist?(@file)
     @valid_date = valid_date
     @data_retriever = DataRetriever.new
     @exchange_rate = ExchangeRate.new(@valid_date, 'EUR', 'USD')
@@ -17,10 +19,10 @@ RSpec.describe ExchangeRate do
   end
 
   after(:each) do
-    File.delete('./spec/acceptance/daily_rates.xml')
+    File.delete(@file)
   end
 
-private
+  private
 
   def valid_date
     if Date.today.saturday?

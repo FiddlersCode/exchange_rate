@@ -3,6 +3,8 @@ require 'exchange_rate'
 RSpec.describe ExchangeRate do
   describe 'file fetching' do
     before(:each) do
+      @file = './spec/integration/daily_rates.xml'
+      File.delete(@file) if File.exist?(@file)
       @retriever = DataRetriever.new
     end
 
@@ -14,7 +16,7 @@ RSpec.describe ExchangeRate do
     end
 
     after(:each) do
-      File.delete('./spec/integration/daily_rates.xml')
+      File.delete(@file)
     end
 
   end
