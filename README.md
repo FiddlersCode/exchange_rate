@@ -22,6 +22,7 @@ From `root folder`:
 - Complete test suite: `rspec` 
 - Unit tests: `rspec spec/unit`
 - Integration tests: `rspec spec/integration` 
+- Acceptance tests: `rspec spec/acceptance`
 
 
 ## Cron jobs
@@ -33,9 +34,6 @@ Run `whenever --update-crontab`
 NB The cron is set to run daily at 3am so if you want to see it in action, change `every 1.day, at: '3:00am' do`
 to `every 1.minute do` and run `whenever --update-crontab` and `tail -f /var/log/cron_log.log`.
 
-## Usage
-
-TODO: Write usage instructions here
 
 The `DataRetriever` class can also be used to manually download the xml file.
 
@@ -45,7 +43,7 @@ In a job situation, I would clarify these assumptions but I decided that for the
 - Storing in a local file (as opposed to a DB) is fine
 - I did not need to choose a production-level API to use but simply provide the functionality to plug in. 
 (Many of the production
-level APIs I looked at used JSON so there would be some different configuration but not much.)
+level APIs I looked at (eg [OpenExchange](https://openexchangerates.org)) used JSON so there would be some different configuration but not much.)
 
 
 ## Design Process
@@ -62,21 +60,19 @@ as I am the only developer, I worked on a single branch.
 - Used TDD to build the library. I was originally trained at Makers in TDD so I am very comfortable with the process. Having recently been working through Ken Beck's TDD by Example and participated in workshops by Mathias Verraes,
 this was a really interesting opportunity to introduce value objects with the TDD as a way of building the design.
 
+- Assumed for the sake of argument that the production API would use JSON, so created a skeleton class/tests for production
+
 - As this is a tech test, in order to preserve confidentiality I have not published it on RubyGems.
 
 ## Design Considerations
 - Use of value objects both guarantees objects' correct internal state, reducing the number of tests needed 
 and also means the objects themselves are immutable, both of which provide further safety.
-- Use of interfaces to tightly encapsulate communication. This would make it simple to plug in whatever production-level API is chosen
+- Use of interfaces to tightly encapsulate communication. This would make it simple to plug in whatever production-level API is chosen (in `exchange_rate.rb` line 17 `    parser = XMLParser.new
+`)
 - Design based on sending messages rather than creating objects, as described in POODR
-- Decided that at this stage, I did not need to set environment variables to determine dev/prod env. The classes and tests are 
-sufficiently isolated that until a production API is chosen, there's no need to configure env variables.
 - While the use of the Ruby gem `whenever` was a nice touch for the cronjob, there were issues with testing this file. I had bugs with the `whenever-test` gem, and eventually reached out to its
 maker on Twitter, who told me he's no longer maintaining it (but did offer to make me a maintainer!). I decided that for this project, building
 a test framework was out of scope but I would expect that this file be fully tested in production.
-- In order to make the tests less brittle, I used yesterday's date whenever possible so that there wouldn't be a risk of tests running on today's date before the cronjob had run.
-- One issue is that a couple of tests for currency on a specific day will fail every 89 days once the date they depend on no longer exists. This brittleness could be removed by 
-testing that the exchange rate is a float or an integer, but I left it in for now as I wanted to make sure I got the correct rate.
 
 ## Further improvements
 - implement a test framework for the `schedule.rb`
