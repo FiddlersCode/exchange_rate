@@ -1,4 +1,4 @@
-class XMLParser
+class Parser
   attr_reader :file
 
   def initialize
