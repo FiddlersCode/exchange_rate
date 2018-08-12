@@ -20,12 +20,12 @@ Or install it yourself as:
 From `root folder`: 
 (NB the complete suite and integration tests will kick off a file download, so only run if you have an internet connection)
 - Complete test suite: `rspec` 
-- Unit tests: `rspec/spec/unit`
-- Integration tests: `rspec/spec/integration` 
+- Unit tests: `rspec spec/unit`
+- Integration tests: `rspec spec/integration` 
 
 
 ## Cron jobs
-Cron jobs were written using [wheneverize](https://github.com/javan/whenever) gem.
+Cron jobs were written using the [whenever](https://github.com/javan/whenever) gem.
 
 To run the cron, open 'lib/config/schedule.rb' and replace with 'root' variable with the your own path to the 'exchange_root' directory.
 Run `whenever --update-crontab`
@@ -93,7 +93,7 @@ testing that the exchange rate is a float or an integer, but I left it in for no
     * error logging
     * error alerting
     * (event storming was very instructive here, as the first time the cron fails is different from the second time - the first time
-    should log an error and generate an automatic immediate retry, but the second time should log an error and try again in ten minutes,
+    could log an error and generate an automatic immediate retry, but the second time could log an error and try again in ten minutes,
     and the third time generate an alert etc)
 - pre-commit hook to run test suite
 - configure rubocop to disable
