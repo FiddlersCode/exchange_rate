@@ -12,7 +12,7 @@ RSpec.describe ExchangeRate do
   describe 'get exchange rate' do
     it 'get_exchange_rate returns a new exchange rate object' do
       @data_retriever.get_rates_file('http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml', './spec/acceptance/')
-      exchange_rate_object = @exchange_rate.get_exchange_rate
+      exchange_rate_object = ExchangeRate.at(@valid_date, 'EUR', 'USD')
       expect(exchange_rate_object.date).to eq(@valid_date)
       expect(exchange_rate_object.rate).to be_a(Float)
     end

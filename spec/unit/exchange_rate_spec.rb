@@ -23,7 +23,7 @@ RSpec.describe ExchangeRate do
 
   describe 'get exchange rate' do
     it 'get_exchange_rate returns a new exchange rate object' do
-      exchange_rate_object = @exchange_rate.get_exchange_rate
+      exchange_rate_object = ExchangeRate.at(@valid_date, 'EUR', 'USD')
       expect(exchange_rate_object.date).to eq(@valid_date)
       expect(exchange_rate_object.rate).to eq(1.1588)
     end

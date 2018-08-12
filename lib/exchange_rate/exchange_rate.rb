@@ -8,6 +8,11 @@ class ExchangeRate
     @rate = rate
   end
 
+  def self.at(date, base_currency, counter_currency)
+    exchange_rate = ExchangeRate.new(date, base_currency, counter_currency)
+    exchange_rate.get_exchange_rate
+  end
+
   def get_exchange_rate
     parser = Parser.new
     rate = parser.get_rate(self)
